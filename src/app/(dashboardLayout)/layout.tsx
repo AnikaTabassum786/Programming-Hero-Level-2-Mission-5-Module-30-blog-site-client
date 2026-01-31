@@ -16,7 +16,16 @@ import {
 } from "@/components/ui/sidebar"
 
 
-export default function DashboardLayout({children}:{children:React.ReactNode}) {
+export default function DashboardLayout({ admin,user}:{
+  admin:React.ReactNode,
+  user:React.ReactNode
+}) {
+
+  const userInfo ={
+    role:"admin"
+  }
+
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -42,7 +51,7 @@ export default function DashboardLayout({children}:{children:React.ReactNode}) {
           </Breadcrumb>
         </header>
         <div>
-         {children}
+        {userInfo.role === 'admin'? admin:user}
         </div>
       </SidebarInset>
     </SidebarProvider>
