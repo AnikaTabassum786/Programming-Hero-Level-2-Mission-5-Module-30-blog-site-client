@@ -1,7 +1,16 @@
-export default function Register() {
-    return (
+import { Signup1 } from "@/components/modules/authentication/signup1";
+
+export default  function Register(){
+    return(
         <div>
-            This is Register Page
+        <Signup1 logo={{
+          url: "/",
+          src: "/logo.png",
+          alt: "Logo",
+          title: "My App",
+        }}
+        buttonText="Login"
+        className=""/>
         </div>
     )
 }

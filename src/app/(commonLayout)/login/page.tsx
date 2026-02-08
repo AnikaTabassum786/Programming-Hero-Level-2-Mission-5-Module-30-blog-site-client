@@ -1,7 +1,18 @@
-export default function Login() {
-    return (
+import { Login1 } from "@/components/modules/authentication/login1";
+
+export default  function LoginPage(){
+    return(
         <div>
-            This is Login Page
+        <Login1
+        logo={{
+          url: "/",
+          src: "/logo.png",
+          alt: "Logo",
+          title: "My App",
+        }}
+        buttonText="Login"
+        className=""
+      />
         </div>
     )
 }

@@ -80,7 +80,15 @@ const Navbar = ({
     {
       title: "Contact",
       url: "/contact",
-    }
+    },
+    // {
+    //   title: "Login",
+    //   url: "/login",
+    // },
+    // {
+    //   title: "Register",
+    //   url: "/register",
+    // }
   ],
   auth = {
     login: { title: "Login", url: "/login" },
