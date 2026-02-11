@@ -61,6 +61,7 @@ const Login1 = ({
           </a>
           <div className="flex w-full max-w-sm min-w-sm flex-col items-center gap-y-4 rounded-md border border-muted bg-background px-6 py-8 shadow-md">
             {heading && <h1 className="text-xl font-semibold">{heading}</h1>}
+            
             <Input
               type="email"
               placeholder="Email"
