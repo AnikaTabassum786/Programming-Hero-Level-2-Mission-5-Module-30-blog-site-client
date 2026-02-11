@@ -1,19 +1,7 @@
-// import { Button } from "@/components/ui/button";
 
-
-// export default function Home() {
-//   return (
-//     <div className="flex gap-4 min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-//       <Button>Hello</Button>
-//       <Button variant="outline">World</Button>
-//     </div>
-//   );
-// }
-
-
-import { Button } from "@/components/ui/button";
+import BlogCard from "@/components/modules/homePage/BlogCard";
 import { blogService } from "@/services/blog.service";
-import { userService } from "@/services/user.service";
+import { BlogPost } from "@/types";
 
 
 export default async function Home() {
@@ -22,8 +10,13 @@ export default async function Home() {
 
   console.log(data)
   return (
-    <div>
-      <Button variant="outline">Click Here</Button>
+    <div className="grid grid-cols-3 max-w-7xl mx-auto px-4 gap-5">
+     {
+      data?.data?.map((post:BlogPost)=>{
+       return <BlogCard key={post.id} post={post}></BlogCard>
+      })
+     }
+    
     </div>
   );
 }
