@@ -4,9 +4,18 @@ import { blogService } from "@/services/blog.service";
 import { BlogPost } from "@/types";
 
 
+
 export default async function Home() {
 //  const {data} = await userService.getSession();
- const {data} = await blogService.getBlogPosts();
+
+ const {data} = await blogService.getBlogPosts({
+  isFeatured:false,
+ 
+ },
+{
+  cache:"no-store"
+}
+);
 
   console.log(data)
   return (
