@@ -2,6 +2,15 @@
 // import { useParams } from "next/navigation"
 
 import { blogService } from "@/services/blog.service";
+import { BlogPost } from "@/types";
+
+export const dynamicParams = true 
+
+export async function generateStaticParams(){
+    const {data} = await blogService.getBlogPosts();
+
+    return data?.data?.map((blog: BlogPost) => ({id: blog.id})).splice(0,3)
+}
 
 
 export default async function BlogDetails({params}:{params:Promise<{id:string}>}) {
