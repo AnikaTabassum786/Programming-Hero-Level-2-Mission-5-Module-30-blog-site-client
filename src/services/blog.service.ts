@@ -1,4 +1,5 @@
 import { env } from "@/env";
+import { error } from "console";
 
 const API_URL = env.API_URL;
 
@@ -57,5 +58,19 @@ if(options?.revalidate){
         catch (err) {
             return { data: null, error: { message: "Something Went Wrong" } }
         }
+    },
+
+    getBlogById: async function(id:string){
+       try{
+          const res = await fetch(`${API_URL}/posts/${id}`)
+          const data = await res.json()
+          return {data:data,error:null}
+       }
+       catch(err){
+        return {data:null, error:{message:"Something Went Wrong"}}
+       }
     }
+
+
+
 }
