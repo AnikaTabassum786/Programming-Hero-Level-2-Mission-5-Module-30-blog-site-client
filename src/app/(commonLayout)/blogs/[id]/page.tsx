@@ -19,7 +19,7 @@ export default async function BlogDetails({params}:{params:Promise<{id:string}>}
     console.log(id)
 
     const {data:blog} = await blogService.getBlogById(id)
-    console.log(blog)
+    // console.log(blog)
 
     return (
         <div>

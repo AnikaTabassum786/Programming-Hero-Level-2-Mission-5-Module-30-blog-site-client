@@ -41,7 +41,7 @@ const Login1 = ({
     provider: "google",
     callbackURL:'http://localhost:3000',
   })
-  console.log(data)
+  // console.log(data)
   }
 
   const session = authClient.useSession();
