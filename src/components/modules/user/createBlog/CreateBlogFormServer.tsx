@@ -10,13 +10,47 @@ import {
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea"
+import { env } from "@/env";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
+const API_URL = env.API_URL
 
 export default function CreateBlogFormServer(){
     const createBlog =async (formData:FormData)=>{
        "use server"
 
-       console.log(formData.get("title"))
+       const title = formData.get("title") as string;
+       const content = formData.get("content") as string;
+       const tags = formData.get("tags") as string;
+
+       const blogData={
+        title,
+        content,
+        tags: tags
+        .split(",")
+        .map((item) => item.trim())
+        .filter((item) => item !== ""),
+       }
+
+      //  console.log(JSON.stringify(blogData))
+
+      const cookieStore = await cookies()
+
+      const res = await fetch(`${API_URL}/posts`,{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          Cookie:cookieStore.toString()
+        },
+        body:JSON.stringify(blogData)
+      })
+      // console.log(res)
+      
+      // if(res.status){
+      //   redirect('/dashboard/create-blog?success')
+      // }
     }
     return(
       <>
@@ -35,6 +69,29 @@ export default function CreateBlogFormServer(){
               <FieldLabel htmlFor="title">Title</FieldLabel>
               <Input type="text" name="title"/>
             </Field>
+
+            <Field>
+              <FieldLabel htmlFor="content">Content</FieldLabel>
+              <Textarea
+                id="content"
+                name="content"
+                placeholder="Write your blog"
+                required
+              />
+            </Field>
+
+            <Field>
+             <Field>
+  <FieldLabel htmlFor="tags">Tags (comma separated)</FieldLabel>
+  <Input
+    id="tags"
+    name="tags"
+    placeholder="nextjs, web"
+  />
+</Field>
+
+            </Field>
+
           </FieldGroup>
         </form>
       </CardContent>
