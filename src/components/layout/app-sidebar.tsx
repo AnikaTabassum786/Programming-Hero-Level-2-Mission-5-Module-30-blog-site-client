@@ -18,37 +18,18 @@ import Link from "next/link"
 import { adminRoute } from "@/routes/adminRoute"
 import { userRoute } from "@/routes/userRoute"
 import { Route } from "@/types"
+import { Roles } from "@/constants/roles"
 
-
-// This is sample data.
-// const data = {
-//   versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
-//   navMain: [
-//     {
-//       title: "Getting Started",
-//       items: [
-//         {
-//           title: "User Dashboard",
-//           url: "/dashboard",
-//         },
-//         {
-//           title: "Admin Dashboard",
-//           url: "/admin-dashboard",
-//         },
-//       ],
-//     }
-//   ],
-// }
 
 export function AppSidebar({ user, ...props }: {user:{role:string} & React.ComponentProps<typeof Sidebar>}) {
    let  routes:Route[] = []
 
   switch (user.role) {
-    case 'admin': 
+    case Roles.admin: 
      routes = adminRoute
       break;
 
-     case 'user': 
+     case Roles.user: 
      routes = userRoute
       break;
   
@@ -59,13 +40,7 @@ export function AppSidebar({ user, ...props }: {user:{role:string} & React.Compo
   
   return (
     <Sidebar {...props}>
-      {/* <SidebarHeader>
-        <VersionSwitcher
-          versions={data.versions}
-          defaultVersion={data.versions[0]}
-        />
-        <SearchForm />
-      </SidebarHeader> */}
+     
       <SidebarContent>
         {/* We create a SidebarGroup for each parent. */}
         {routes.map((item) => (
@@ -84,6 +59,7 @@ export function AppSidebar({ user, ...props }: {user:{role:string} & React.Compo
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
+
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
