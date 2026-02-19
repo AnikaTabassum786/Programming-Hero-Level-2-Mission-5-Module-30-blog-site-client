@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { env } from "@/env";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { revalidateTag } from "next/cache";
 
 const API_URL = env.API_URL
 
@@ -51,6 +52,10 @@ export default function CreateBlogFormServer(){
       // if(res.status){
       //   redirect('/dashboard/create-blog?success')
       // }
+
+      if(res.ok){
+        revalidateTag("blogPosts","max")
+      }
     }
     return(
       <>

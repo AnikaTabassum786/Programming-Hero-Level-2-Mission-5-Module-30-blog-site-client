@@ -42,7 +42,14 @@ if(options?.revalidate){
  config.next={revalidate:options.revalidate}
 }
 
-  const res = await fetch(url.toString(),config)
+if(options?.revalidate){
+  config.next ={revalidate:options.revalidate}
+}
+
+config.next = {...config.next,tags:["blogPosts"]};
+
+
+const res = await fetch(url.toString(),config)
 
             // const res = await fetch(`${API_URL}/posts`, { next: { revalidate: 10 } })
 
