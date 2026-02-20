@@ -67,6 +67,19 @@ const HistoryTable = ({posts}:{posts:BlogPost[]}) => (
               <TableRow key={item.id}>
                 <TableCell>{item.title}</TableCell>
                 {/* <TableCell>{item.isFeatured}</TableCell> */}
+                <TableCell className="flex flex-wrap gap-1">
+                    {item.tags && item.tags.length > 0 ? (
+                      item.tags.map((item, index) => (
+                        <p key={index}>
+                          {item}
+                        </p>
+                      ))
+                    ) : (
+                      <span className="text-sm text-muted-foreground">
+                        No tags
+                      </span>
+                    )}
+                  </TableCell>
                 <TableCell>{item.views}</TableCell>
                 {/* <TableCell>{item.title}</TableCell> */}
                 
