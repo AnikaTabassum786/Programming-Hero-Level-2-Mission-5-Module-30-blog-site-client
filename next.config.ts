@@ -12,6 +12,18 @@ const nextConfig: NextConfig = {
     AUTH_URL: process.env.AUTH_URL,
     NEXT_PUBLIC_TEST: process.env.NEXT_PUBLIC_TEST,
   },
+
+   images: {
+    formats:["image/avif","image/webp"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: "images.unsplash.com",
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
