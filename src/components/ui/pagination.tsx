@@ -148,7 +148,7 @@ interface PaginationControlsProps {
 
 export function PaginationControls({ meta }: PaginationControlsProps) {
 
-  const { limit, page, total, totalPage } = meta
+  const { limit:pageSize, page:currentPage, total, totalPage } = meta
   // console.log({limit,page,total,totalPage})
 
   const searchParams = useSearchParams();
@@ -161,53 +161,71 @@ export function PaginationControls({ meta }: PaginationControlsProps) {
     router.push(`?${params.toString()}`)
   }
 
-
+  //* Showing 1 to 10 of 21 -> page 1
+  //* Showing 11 to 20 of 21 -> page 2
+  
+  const start = (currentPage - 1) * pageSize +1
+  const end = Math.min(currentPage * pageSize, total);
 
   return (
     <>
       <div className="flex items-center justify-between px-2 py-4 border-t mt-4">
         <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-muted-foreground">
+            Showing {start} to {end} of {total} results
+          </div>
 
         </div>
 
         <div className="flex items-center space-x-2">
-          {/* <Button
-          variant="outline"
-          size="icon"
-         
-        >
-          <ChevronsLeft className="h-4 w-4" />
-        </Button> */}
+
+           <Button
+            variant="outline"
+            size="icon"
+            onClick={()=>{navigateToPage(1)}}
+            disabled ={currentPage === 1}
+            >
+            <ChevronsLeft className="h-4 w-4"
+            />
+          </Button> 
+
+          
 
           <Button
             variant="outline"
             size="icon"
-
+             onClick={() => { navigateToPage(currentPage - 1) }}
+             disabled ={currentPage === 1}
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
 
           <div className="flex items-center gap-1">
             <span className="text-sm font-medium">
-              1
+              Page {currentPage} of {totalPage}
             </span>
           </div>
 
           <Button
             variant="outline"
             size="icon"
-            onClick={() => { navigateToPage(page + 1) }}
+            onClick={() => { navigateToPage(currentPage + 1) }}
+            disabled ={currentPage === totalPage}
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
 
-          {/* <Button
-          variant="outline"
-          size="icon"
-          
-        >
-          <ChevronsRight className="h-4 w-4" />
-        </Button> */}
+          <Button
+            variant="outline"
+            size="icon"
+             onClick={() => { navigateToPage(totalPage) }}
+             disabled ={currentPage === totalPage}
+            >
+            <ChevronsRight className="h-4 w-4"
+           
+            
+            />
+          </Button>
         </div>
       </div>
     </>
