@@ -7,6 +7,10 @@ export const adminRoute:Route[]= [
         {
           title: "Analytics",
           url: "/admin-dashboard/analytics",
+        },
+        {
+          title: "Send Mail",
+          url: "/admin-dashboard/send-mail",
         }
       ],
     }

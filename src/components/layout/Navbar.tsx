@@ -101,7 +101,7 @@ const Navbar = ({
   className,
 }: Navbar1Props) => {
   return (
-    <section className={cn("py-4", className)}>
+    <section className={cn(" py-4", className)}>
       <div className="container  px-4">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
@@ -210,8 +210,6 @@ const renderMenuItem = (item: MenuItem) => {
 };
 
 const renderMobileMenuItem = (item: MenuItem) => {
-
-
   return (
     <Link key={item.title} href={item.url} className="text-md font-semibold">
       {item.title}

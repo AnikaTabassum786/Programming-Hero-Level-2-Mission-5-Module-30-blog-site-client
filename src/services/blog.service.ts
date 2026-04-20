@@ -90,7 +90,6 @@ const res = await fetch(url.toString(),config)
     createBlogPost: async(blogData:BlogData)=>{
         try{
             const cookieStore = await cookies()
-           
                  const res = await fetch(`${API_URL}/posts`,{
                    method:"POST",
                    headers:{
@@ -113,9 +112,5 @@ const res = await fetch(url.toString(),config)
         catch(err){
           return{data:null,error:{message:"Something Went Wrong"}}
         }
-
     }
-
-
-
 }
