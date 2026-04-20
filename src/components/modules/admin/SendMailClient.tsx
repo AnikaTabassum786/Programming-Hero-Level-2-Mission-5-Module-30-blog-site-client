@@ -48,7 +48,7 @@ export default function SendMailClient() {
 
       <button
         onClick={handleSend}
-        className="bg-blue-500 text-white p-2 rounded"
+        className="bg-blue-500 text-white p-2 rounded cursor-pointer"
       >
         Send Email
       </button>
